@@ -136,11 +136,7 @@ void Huffman<Type>::BuildHuffman(KVNode<Type>* leaf,int n)
 	while(n+k<sum)
 	{
 		int r1=0,r2=0;
-	//	cout<<"n+k= "<<n+k<<endl;
 		select(leaf,r1,r2,n+k);
-		cout<<"r1=  "<<r1<<"  r2=  "<<r2<<endl;
-		cout<<leaf[r1].frequence<<"   "<<leaf[r2].frequence<<endl;
-	//	system("pause");
 		leaf[n+k].frequence=leaf[r1].frequence+leaf[r2].frequence;
 		leaf[n+k].left=&leaf[r1];
 		leaf[n+k].right=&leaf[r2];
@@ -161,7 +157,7 @@ void Huffman<Type>::preorderTraverse(KVNode<Type>* node)
 	{
 		return;
 	}
-	cout<<root->frequence<<"  ";
+	cout<<node->frequence<<"  ";
 	preorderTraverse(node->left);
 	preorderTraverse(node->right);
 }
@@ -172,11 +168,12 @@ void Huffman<Type>::preorderTraverse(KVNode<Type>* node)
 template<class Type>
 void Huffman<Type>::postorderTraverse(KVNode<Type>* node)
 {
-	if(node==NULL);
+	if(node==NULL)
 	{
-		return ;
+		return;
 	}
 	postorderTraverse(node->left);
+	
 	postorderTraverse(node->right);
 	cout<<node->frequence<<"  ";
 }
@@ -224,8 +221,6 @@ int main(void)
 	num[7].value='h';
 	num[7].frequence=7;
 	Huffman<char> huffmantree(num,8);
-//	cout<<huffmantree.getRoot()->frequence<<"****"<<endl;
-	system("pause");
 	KVNode<char>* temp=huffmantree.getRoot();
 	cout<<"preorder traverse this huffman tree:";
 	huffmantree.preorderTraverse(temp);

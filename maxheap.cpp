@@ -186,6 +186,11 @@ Type maxHeap<Type>::remove(int pos)
 		else
 		{
 			Comp<Type>::Swap(maxheap,pos,currsize-1);
+			while(pos!=0&&Comp<Type>::Prior(maxheap[pos],maxheap[parent(pos)]))
+			{
+				Comp<Type>::Swap(maxheap,pos,parent(pos));
+				pos=parent(pos);
+			}
 			siftdown(pos);
 			currsize--;
 		}
